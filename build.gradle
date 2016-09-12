@@ -16,8 +16,8 @@ group "demoplugin"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
-apply plugin:"org.grails.grails-plugin"
-apply plugin:"org.grails.grails-plugin-publish"
+{apply plugin:"org.grails.grails-plugin"
+}apply plugin:"org.grails.grails-plugin-publish"
 
 ext {
     grailsVersion = project.grailsVersion
@@ -47,16 +47,15 @@ dependencies {
     testCompile "org.grails:grails-plugin-testing"
 }
 grailsPublish {
-    // TODO: Provide values here
-    user = 'user'
-    key = 'key'
-    githubSlug = 'foo/bar'
+    user = System.getenv("BINTRAY_USER") ?: project.bintrayUser
+    key = System.getenv("BINTRAY_KEY") ?: project.bintrayKey
+    githubSlug = 'https://github.com/sbglasius/demoplugin'
     license {
         name = 'Apache-2.0'
     }
     title = "My Plugin"
     desc = "Full plugin description"
     developers = [johndoe:"John Doe"]
-    portalUser = ""
-    portalPassword = ""    
+    portalUser = System.getenv("GRAILS_PORTAL_USER") ?: project.grailsPortalUser
+    portalPassword = System.getenv("GRAILS_PORTAL_PASSWORD") ?: project.grailsPortalPassword
 }
