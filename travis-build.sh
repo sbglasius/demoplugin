@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-set -e #exit on pipe errors
-set -v #verbose
+set -e 
 
 ./gradlew -q clean check install --stacktrace
 
